@@ -1,0 +1,50 @@
++--------+-----------+------------------------------------+--------------------------------+------------------------------------------------------------------------+------------------------------+
+| Domain | Method    | URI                                | Name                           | Action                                                                 | Middleware                   |
++--------+-----------+------------------------------------+--------------------------------+------------------------------------------------------------------------+------------------------------+
+|        | GET|HEAD  | /                                  |                                | Closure                                                                | web                          |
+|        | GET|HEAD  | aeronaves                          | planes.index                   | App\Http\Controllers\PlanesController@index                            | web,auth                     |
+|        | POST      | aeronaves                          | planes.store                   | App\Http\Controllers\PlanesController@store                            | web,auth                     |
+|        | GET|HEAD  | aeronaves/create                   | planes.create                  | App\Http\Controllers\PlanesController@create                           | web,auth                     |
+|        | PUT       | aeronaves/{plane}                  | planes.update                  | App\Http\Controllers\PlanesController@update                           | web,auth                     |
+|        | DELETE    | aeronaves/{plane}                  | planes.destroy                 | App\Http\Controllers\PlanesController@destroy                          | web,auth                     |
+|        | GET|HEAD  | aeronaves/{plane}/edit             | planes.edit                    | App\Http\Controllers\PlanesController@edit                             | web,auth                     |
+|        | GET|HEAD  | aeronaves/{plane}/pilotos          | planes.pilotos                 | App\Http\Controllers\PlanesController@mostrarPilotos                   | web,auth                     |
+|        | GET|HEAD  | aeronaves/{plane}/pilotos/add      | planes.add-piloto              | App\Http\Controllers\PlanesController@addPiloto                        | web,auth                     |
+|        | DELETE    | aeronaves/{plane}/pilotos/{piloto} | planes.delete-piloto           | App\Http\Controllers\PlanesController@deletePiloto                     | web,auth                     |
+|        | POST      | aeronaves/{plane}/pilotos/{user}   | planes.store-piloto            | App\Http\Controllers\PlanesController@storePiloto                      | web,auth                     |
+|        | GET|HEAD  | api/user                           |                                | Closure                                                                | api,auth:api                 |
+|        | GET|HEAD  | email/resend                       | verification.resend            | App\Http\Controllers\Auth\VerificationController@resend                | web,auth,throttle:6,1        |
+|        | GET|HEAD  | email/verify                       | verification.notice            | App\Http\Controllers\Auth\VerificationController@show                  | web,auth                     |
+|        | GET|HEAD  | email/verify/{id}                  | verification.verify            | App\Http\Controllers\Auth\VerificationController@verify                | web,auth,signed,throttle:6,1 |
+|        | GET|HEAD  | home                               | home                           | App\Http\Controllers\HomeController@index                              | web,auth                     |
+|        | POST      | login                              |                                | App\Http\Controllers\Auth\LoginController@login                        | web,guest                    |
+|        | GET|HEAD  | login                              | login                          | App\Http\Controllers\Auth\LoginController@showLoginForm                | web,guest                    |
+|        | POST      | logout                             | logout                         | App\Http\Controllers\Auth\LoginController@logout                       | web                          |
+|        | GET|HEAD  | logout                             |                                | App\Http\Controllers\Auth\LoginController@logout                       | web                          |
+|        | POST      | movimentos                         | movimentos.store               | App\Http\Controllers\MovimentosController@store                        | web,auth                     |
+|        | GET|HEAD  | movimentos                         | movimentos.index               | App\Http\Controllers\MovimentosController@index                        | web,auth                     |
+|        | GET|HEAD  | movimentos/create                  | movimentos.create              | App\Http\Controllers\MovimentosController@create                       | web,auth                     |
+|        | GET|HEAD  | movimentos/estatisticas            | movimentos.estatisticas        | App\Http\Controllers\MovimentosController@estatisticas                 | web,auth                     |
+|        | PUT|PATCH | movimentos/{movimento}             | movimentos.update              | App\Http\Controllers\MovimentosController@update                       | web,auth                     |
+|        | DELETE    | movimentos/{movimento}             | movimentos.destroy             | App\Http\Controllers\MovimentosController@destroy                      | web,auth                     |
+|        | GET|HEAD  | movimentos/{movimento}             | movimentos.show                | App\Http\Controllers\MovimentosController@show                         | web,auth                     |
+|        | GET|HEAD  | movimentos/{movimento}/edit        | movimentos.edit                | App\Http\Controllers\MovimentosController@edit                         | web,auth                     |
+|        | POST      | password/email                     | password.email                 | App\Http\Controllers\Auth\ForgotPasswordController@sendResetLinkEmail  | web,guest                    |
+|        | POST      | password/reset                     | password.update                | App\Http\Controllers\Auth\ResetPasswordController@reset                | web,guest                    |
+|        | GET|HEAD  | password/reset                     | password.request               | App\Http\Controllers\Auth\ForgotPasswordController@showLinkRequestForm | web,guest                    |
+|        | GET|HEAD  | password/reset/{token}             | password.reset                 | App\Http\Controllers\Auth\ResetPasswordController@showResetForm        | web,guest                    |
+|        | GET|HEAD  | socios                             | users.index                    | App\Http\Controllers\UserController@index                              | web,auth                     |
+|        | POST      | socios                             | users.store                    | App\Http\Controllers\UserController@store                              | web,auth                     |
+|        | GET|HEAD  | socios/create                      | users.create                   | App\Http\Controllers\UserController@create                             | web,auth                     |
+|        | PATCH     | socios/desativar_sem_quotas        | users.desaticarSociosSemQuotas | App\Http\Controllers\UserController@desaticarSociosSemQuotas           | web,auth                     |
+|        | PATCH     | socios/reset_quotas                | users.reset_quotas             | App\Http\Controllers\UserController@reset_quotas                       | web,auth                     |
+|        | GET|HEAD  | socios/{piloto}/certificado        | users.getCertificado           | App\Http\Controllers\UserController@getCertificado                     | web,auth                     |
+|        | GET|HEAD  | socios/{piloto}/licenca            | users.getLicenca               | App\Http\Controllers\UserController@getLicenca                         | web,auth                     |
+|        | DELETE    | socios/{user}                      | users.destroy                  | App\Http\Controllers\UserController@destroy                            | web,auth                     |
+|        | PUT       | socios/{user}                      | users.update                   | App\Http\Controllers\UserController@update                             | web,auth                     |
+|        | GET|HEAD  | socios/{user}                      | users.show                     | App\Http\Controllers\UserController@show                               | web,auth                     |
+|        | PATCH     | socios/{user}/ativo                | users.ativarOuDesaticarSocio   | App\Http\Controllers\UserController@ativarOuDesaticarSocio             | web,auth                     |
+|        | GET|HEAD  | socios/{user}/edit                 | users.edit                     | App\Http\Controllers\UserController@edit                               | web,auth                     |
+|        | PATCH     | socios/{user}/quota                | users.quotaPaga                | App\Http\Controllers\UserController@quotaPaga                          | web,auth                     |
+|        | POST      | socios/{user}/send_reactivate_mail | users.reenviarMailAtivacao     | App\Http\Controllers\UserController@reenviarMailAtivacao               | web,auth                     |
++--------+-----------+------------------------------------+--------------------------------+------------------------------------------------------------------------+------------------------------+
